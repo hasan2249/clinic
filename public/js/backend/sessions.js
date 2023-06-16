@@ -38,23 +38,6 @@
                                 columns: ":visible:not(:last-child)",
                             },
                         },
-                        {
-                            text: "حساب المجموع",
-                            action: function (e, dt, node, config) {
-                                let sum = 0;
-                                console.log(dt.row({ selected: true }).data());
-                                dt.rows({ selected: true })
-                                    .data()
-                                    .map((item) => {
-                                        sum += item.amount;
-                                    });
-                                $("#span-trans-number").text(
-                                    dt.rows({ selected: true }).count()
-                                );
-                                $("#span-trans-amount").text(sum);
-                            },
-                            enabled: true,
-                        },
                         "pageLength",
                         "colvis",
                     ],
@@ -75,9 +58,17 @@
                     ajax: {
                         url: this.selectors.sessions_table.data("ajax_url"),
                         type: "post",
-                        data: { status: 1, trashed: false },
+                        data: {
+                            status: 1,
+                            trashed: false,
+                            patient_id:
+                                this.selectors.sessions_table.data(
+                                    "patient_id"
+                                ),
+                        },
                     },
                     columns: [
+                        { data: "patient_id", name: "patient_id" },
                         { data: "date", name: "date" },
                         { data: "treatment_area", name: "treatment_area" },
                         { data: "spot_size", name: "spot_size" },
@@ -86,7 +77,6 @@
                         { data: "count", name: "count" },
                         { data: "price", name: "price" },
                         { data: "note", name: "note" },
-                        { data: "patient_id", name: "patient_id" },
                         { data: "created_at", name: "created_at" },
                         {
                             data: "actions",

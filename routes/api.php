@@ -37,4 +37,6 @@ Route::group(['namespace' => 'Api\V1', 'prefix' => 'v1', 'as' => 'v1.'], functio
     Route::apiResource('appointments', 'AppointmentsController'); 
 	// Auto-Generated:  Sessions
     Route::apiResource('sessions', 'SessionsController'); 
+	// Auto-Generated:  Mes
+    Route::apiResource('mes', 'MesController'); 
 });

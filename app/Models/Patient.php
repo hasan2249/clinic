@@ -28,4 +28,13 @@ class Patient extends BaseModel
         'birthday',
         'address'
     ];
+
+    public function getSessions($permission, $route)
+    {
+        if (access()->allow($permission)) {
+            return '<a href="' . route($route, ["patient_id" => $this->id]) . '" data-toggle="tooltip" data-placement="top" title="الجلسات" class="btn btn-success btn-sm">
+            عرض الجلسات
+                    </a>';
+        }
+    }
 }

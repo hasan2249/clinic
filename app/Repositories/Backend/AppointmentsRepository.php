@@ -27,8 +27,8 @@ class AppointmentsRepository extends BaseRepository
         'created_at',
         'updated_at',
         'date',
-		'patient_id',
-		'note'
+        'patient_id',
+        'note'
     ];
 
     /**
@@ -62,13 +62,14 @@ class AppointmentsRepository extends BaseRepository
     public function getForDataTable()
     {
         return $this->query()
+            ->join('patients', 'patients.id', '=', 'appointments.patient_id')
             ->select([
-                'id',
-                'created_at',
-                'updated_at',
-                'date',
-		'patient_id',
-		'note'
+                'appointments.id',
+                'appointments.created_at',
+                'appointments.updated_at',
+                'appointments.date',
+                'patients.name as patient_id',
+                'appointments.note'
             ]);
     }
 
@@ -129,4 +130,3 @@ class AppointmentsRepository extends BaseRepository
         throw new GeneralException(__('exceptions.backend.pages.delete_error'));
     }
 }
-   

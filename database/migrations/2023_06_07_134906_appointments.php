@@ -16,7 +16,7 @@ class Appointments extends Migration
         //
         Schema::create('appointments', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->dateTime('date');
+            $table->timestamp('date');
             $table->bigInteger('patient_id');
             $table->text('note');
             $table->timestamps();

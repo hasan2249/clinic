@@ -43,7 +43,7 @@
                         <option value="integer">integer</option>
                         <option value="string">string</option>
                         <option value="double">double</option>
-                        <option value="dateTime">dateTime</option>
+                        <option value="timestamp">timestamp</option>
                         <option value="date">date</option>
                         <option value="float">float</option>
                         <option value="timeTz">timeTz</option>

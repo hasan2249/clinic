@@ -1274,12 +1274,12 @@ for ($i = 0; $i < count($_POST['property_name']); $i++) {
         <!--col-->
         </div>
         <!--form-group-->\n";
-    } else if ($_POST['property_type'][$i] == "dateTime") {
+    } else if ($_POST['property_type'][$i] == "timestamp") {
         $innner .= "\n<div class=\"form-group row\">
         {{ Form::label(\"" . $_POST['property_name'][$i] . "\", \"" . $_POST['property_name'][$i] . "\", ['class' => 'col-md-2 from-control-label required']) }}
 
         <div class=\"col-md-10\">" .
-            "\n<input type=\"datetime\"  name=\"" . $_POST['property_name'][$i] . "\" value=\"{{isset($" . $m_name_s . ")?$" . $m_name_s . "->" . $_POST['property_name'][$i] . ":''}}\" \>\n" . "
+            "\n<input type=\"datetime-local\"  name=\"" . $_POST['property_name'][$i] . "\" value=\"{{isset($" . $m_name_s . ")?$" . $m_name_s . "->" . $_POST['property_name'][$i] . ":''}}\" \>\n" . "
         </div>
         <!--col-->
         </div>

@@ -34,6 +34,15 @@
 
             <li class="nav-item">
                 <a class="nav-link {{
+                    active_class(Route::is('admin/mes/create'))
+                }}" href="{{ route('admin.mes.edit', ['me' => 1]) }}">
+                    <i class="nav-icon fas fa-tachometer-alt"></i>
+                    بروفيلي
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link {{
                     active_class(Route::is('admin/patient'))
                 }}" href="{{ route('admin.appointments.index') }}">
                     <i class="nav-icon fas fa-tachometer-alt"></i>

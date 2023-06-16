@@ -1,6 +1,6 @@
 @extends('backend.layouts.app')
 
-@section('title', app_name() . ' | ' . __('labels.backend.access.pages.management'))
+@section('title', app_name() .' | ' . ' سجل المواعيد')
 
 @section('breadcrumb-links')
 @include('backend.appointments.includes.breadcrumb-links')
@@ -9,11 +9,11 @@
 @section('content')
 <div class="card">
     <div class="card-body">
-        <div class="row">
+        <div class="row light-red">
             <div class="col-sm-5">
-                <h4 class="card-title mb-0">
-                    {{ __('labels.backend.access.pages.management') }} <small class="text-muted">{{ __('labels.backend.access.pages.active') }}</small>
-                </h4>
+                <h3 class="card-title m-2">
+                    سجل المواعيد
+                </h3>
             </div>
             <!--col-->
         </div>
@@ -25,10 +25,10 @@
                     <table id="appointments-table" class="table" data-ajax_url="{{ route("admin.appointments.get") }}">
                         <thead>
                             <tr>
-                                
-					<th>date</th> 
-					<th>patient_id</th> 
-					<th>note</th> 
+
+                                <th>date</th>
+                                <th>patient_id</th>
+                                <th>note</th>
                                 <th>{{ trans('labels.backend.access.pages.table.createdat') }}</th>
                                 <th>{{ trans('labels.general.actions') }}</th>
                             </tr>

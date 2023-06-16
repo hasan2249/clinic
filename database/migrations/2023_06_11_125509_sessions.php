@@ -16,7 +16,7 @@ class Sessions extends Migration
         //
         Schema::create('p_sessions', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->dateTime('date');
+            $table->timestamp('date');
             $table->string('treatment_area');
             $table->integer('spot_size');
             $table->integer('fluence');

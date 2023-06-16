@@ -11,8 +11,11 @@ use App\Http\Requests\Backend\Sessions\StoreSessionRequest;
 use App\Http\Requests\Backend\Sessions\UpdateSessionRequest;
 use App\Http\Responses\Backend\Session\EditResponse;
 use App\Http\Responses\RedirectResponse;
+use Yajra\DataTables\Facades\DataTables;
 use App\Http\Responses\ViewResponse;
+use App\Exceptions\GeneralException;
 use App\Models\Session;
+use App\Models\Patient;
 use App\Repositories\Backend\SessionsRepository;
 use Illuminate\Support\Facades\View;
 
@@ -100,5 +103,33 @@ class SessionsController extends Controller
 
         return new RedirectResponse(route('admin.sessions.index'), ['flash_success' => __('alerts.backend.pages.deleted')]);
     }
-}
 
+    public function createPatientSessionView(ManageSessionRequest $request)
+    {
+        $patient = Patient::find($request->patient_id);
+        if (!$patient) {
+            throw new GeneralException("Error: There is no patient with id: " . $request->patient_id);
+        }
+        return new ViewResponse('backend.sessions.createByPatientId', ["patient_id" => $patient->id, "patient_name" => $patient->name]);
+    }
+
+    public function getPatientSessionView(ManageSessionRequest $request)
+    {
+        $patient = Patient::find($request->patient_id);
+        $name = $patient->name;
+        return new ViewResponse('backend.sessions.specific_patient', ["patient_id" => $patient->id, "name" => $name]);
+    }
+
+    public function getPatientSessionById(ManageSessionRequest $request)
+    {
+        return Datatables::of($this->repository->getForDataTable($request->patient_id))
+            ->editColumn('created_at', function ($session) {
+                return $session->created_at->toDateString();
+            })
+            ->addColumn('actions', function ($session) {
+                return $session->action_buttons;
+            })
+            ->escapeColumns(['title'])
+            ->make(true);
+    }
+}

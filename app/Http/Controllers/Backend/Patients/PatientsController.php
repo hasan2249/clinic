@@ -13,6 +13,7 @@ use App\Http\Responses\Backend\Patient\EditResponse;
 use App\Http\Responses\RedirectResponse;
 use App\Http\Responses\ViewResponse;
 use App\Models\Patient;
+use App\Models\Me;
 use App\Repositories\Backend\PatientsRepository;
 use Illuminate\Support\Facades\View;
 
@@ -101,4 +102,3 @@ class PatientsController extends Controller
         return new RedirectResponse(route('admin.Patients.index'), ['flash_success' => __('alerts.backend.pages.deleted')]);
     }
 }
-

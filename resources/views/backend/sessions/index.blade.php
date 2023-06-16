@@ -1,19 +1,15 @@
 @extends('backend.layouts.app')
 
-@section('title', app_name() . ' | ' . __('labels.backend.access.pages.management'))
-
-@section('breadcrumb-links')
-@include('backend.sessions.includes.breadcrumb-links')
-@endsection
+@section('title', app_name() . ' | ' . 'سجل الجلسات')
 
 @section('content')
 <div class="card">
     <div class="card-body">
-        <div class="row">
+        <div class="row light-green">
             <div class="col-sm-5">
-                <h4 class="card-title mb-0">
-                    {{ __('labels.backend.access.pages.management') }} <small class="text-muted">{{ __('labels.backend.access.pages.active') }}</small>
-                </h4>
+                <h3 class="card-title m-2">
+                    سجل الجلسات
+                </h3>
             </div>
             <!--col-->
         </div>
@@ -25,6 +21,7 @@
                     <table id="sessions-table" class="table" data-ajax_url="{{ route("admin.sessions.get") }}">
                         <thead>
                             <tr>
+                                <th>Patient</th>
                                 <th>Date</th>
                                 <th>Treatment Area</th>
                                 <th>Spot Size</th>
@@ -33,7 +30,6 @@
                                 <th>Count</th>
                                 <th>Price</th>
                                 <th>Note</th>
-                                <th>Patient Id</th>
                                 <th>{{ trans('labels.backend.access.pages.table.createdat') }}</th>
                                 <th>{{ trans('labels.general.actions') }}</th>
                             </tr>

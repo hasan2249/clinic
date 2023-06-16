@@ -1,10 +1,10 @@
 <div class="card-body">
     <div class="row">
         <div class="col-sm-5">
-            <h4 class="card-title mb-0">
-                {{ __('labels.backend.access.pages.management') }}
-                <small class="text-muted">{{ (isset($page)) ? __('labels.backend.access.pages.edit') : __('labels.backend.access.pages.create') }}</small>
-            </h4>
+            <h3 class="card-title mb-0">
+
+                {{ (isset($patient)) ? 'تعديل بيانات المريض' : 'انشاء مريض جديد' }}
+            </h3>
         </div>
         <!--col-->
     </div>

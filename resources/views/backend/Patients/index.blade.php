@@ -1,6 +1,6 @@
 @extends('backend.layouts.app')
 
-@section('title', app_name() . ' | ' . __('labels.backend.access.pages.management'))
+@section('title', app_name() .' | ' . ' سجل المرضى')
 
 @section('breadcrumb-links')
 @include('backend.Patients.includes.breadcrumb-links')
@@ -9,11 +9,11 @@
 @section('content')
 <div class="card">
     <div class="card-body">
-        <div class="row">
+        <div class="row light-blue">
             <div class="col-sm-5">
-                <h4 class="card-title mb-0">
-                    {{ __('labels.backend.access.pages.management') }} <small class="text-muted">{{ __('labels.backend.access.pages.active') }}</small>
-                </h4>
+                <h3 class="card-title m-2">
+                    سجل المرضى
+                </h3>
             </div>
             <!--col-->
         </div>

@@ -27,14 +27,14 @@ class SessionsRepository extends BaseRepository
         'created_at',
         'updated_at',
         'date',
-		'treatment_area',
-		'spot_size',
-		'fluence',
-		'pluse_width',
-		'count',
-		'price',
-		'note',
-		'patient_id'
+        'treatment_area',
+        'spot_size',
+        'fluence',
+        'pluse_width',
+        'count',
+        'price',
+        'note',
+        'patient_id'
     ];
 
     /**
@@ -65,22 +65,27 @@ class SessionsRepository extends BaseRepository
     /**
      * @return mixed
      */
-    public function getForDataTable()
+    public function getForDataTable($patient_id = null)
     {
-        return $this->query()
+        $query = $this->query();
+        if ($patient_id) {
+            $query->where('patient_id', $patient_id);
+        }
+        return $query
+            ->join('patients', 'patients.id', '=', 'p_sessions.patient_id')
             ->select([
-                'id',
-                'created_at',
-                'updated_at',
-                'date',
-		'treatment_area',
-		'spot_size',
-		'fluence',
-		'pluse_width',
-		'count',
-		'price',
-		'note',
-		'patient_id'
+                'p_sessions.id',
+                'p_sessions.created_at',
+                'p_sessions.updated_at',
+                'p_sessions.date',
+                'p_sessions.treatment_area',
+                'p_sessions.spot_size',
+                'p_sessions.fluence',
+                'p_sessions.pluse_width',
+                'p_sessions.count',
+                'p_sessions.price',
+                'p_sessions.note',
+                'patients.name as patient_id'
             ]);
     }
 
@@ -141,4 +146,3 @@ class SessionsRepository extends BaseRepository
         throw new GeneralException(__('exceptions.backend.pages.delete_error'));
     }
 }
-   
