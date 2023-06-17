@@ -49,35 +49,7 @@
     <script src="{{asset('js/custome.js')}}"></script>
     <script src="{{asset('js/jquery-steps.js')}}"></script>
     <script src="{{asset('js/countrySelect.min.js')}}"></script>
-    <script>
-        $('#demo').steps({
-            onFinish: function() {
-                alert('Wizard Completed');
-            },
-            onChange: function(currentIndex, newIndex, stepDirection) {
-                preview();
-                return true;
-            },
-        });
 
-        $("#country_selector").countrySelect({
-            defaultCountry: "sy",
-            // onlyCountries: ['us', 'gb', 'ch', 'ca', 'do'],
-            // responsiveDropdown: true,
-            preferredCountries: ['ca', 'gb', 'us']
-        });
-
-        $("#country_selector_").countrySelect({
-            defaultCountry: "sy",
-            // onlyCountries: ['us', 'gb', 'ch', 'ca', 'do'],
-            // responsiveDropdown: true,
-            preferredCountries: ['ca', 'gb', 'us']
-        });
-
-        function preview() {
-
-        }
-    </script>
     @include('includes.partials.ga')
 </body>
 

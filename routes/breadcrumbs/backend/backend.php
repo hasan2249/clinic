@@ -19,3 +19,4 @@ require __DIR__.'/Patients/Patient.php';
 require __DIR__.'/Appointments/appointment.php';
 require __DIR__.'/Sessions/session.php';
 require __DIR__.'/Mes/me.php';
+require __DIR__.'/Costs/cost.php';

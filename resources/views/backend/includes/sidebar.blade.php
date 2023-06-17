@@ -50,6 +50,15 @@
                 </a>
             </li>
 
+            <li class="nav-item">
+                <a class="nav-link {{
+                    active_class(Route::is('admin/cost'))
+                }}" href="{{ route('admin.costs.index') }}">
+                    <i class="nav-icon fas fa-tachometer-alt"></i>
+                    المصاريف
+                </a>
+            </li>
+
             <!-- ToDo -->
             <li class="nav-item">
                 <a class="nav-link {{

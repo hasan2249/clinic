@@ -39,4 +39,6 @@ Route::group(['namespace' => 'Api\V1', 'prefix' => 'v1', 'as' => 'v1.'], functio
     Route::apiResource('sessions', 'SessionsController'); 
 	// Auto-Generated:  Mes
     Route::apiResource('mes', 'MesController'); 
+	// Auto-Generated:  Costs
+    Route::apiResource('costs', 'CostsController'); 
 });

@@ -11,8 +11,8 @@ trait CostAttributes
     {
         return '<div class="btn-group action-btn">
                     '.$this->getEditButtonAttribute('edit-page', 'admin.costs.edit').'                    
+                    '.$this->getDeleteButtonAttribute('delete-page', 'admin.costs.destroy').'
                 </div>';
-				// '.$this->getDeleteButtonAttribute('delete-page', 'admin.costs.destroy').'
     }
 
     /**

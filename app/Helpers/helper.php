@@ -41,7 +41,11 @@ if (!function_exists('app_name')) {
     function app_name()
     {
         $me = Me::first();
-        return config('app.name') . $me->name;
+        if ($me) {
+            return config('app.name') . ' ' . $me->name;
+        } else {
+            return config('app.name');
+        }
     }
 }
 

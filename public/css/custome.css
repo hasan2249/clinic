@@ -22,7 +22,10 @@ input{
   color: white;
   background-color: #1515bd;
 }
-
+.color-a{
+  color: white;
+  background-color: #e90acf;
+}
 .light-yellow{
   color: white;
   background-color: #d8eb00;

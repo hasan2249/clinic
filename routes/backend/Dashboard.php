@@ -5,6 +5,7 @@
  */
 Route::get('dashboard', 'DashboardController@index')->name('dashboard');
 Route::post('get-permission', 'DashboardController@getPermissionByRole')->name('get.permission');
+Route::post('getdataDateRange', 'DashboardController@getdataDateRange');
 
 // Edit Profile
 /* Route::get('profile/edit', 'DashboardController@editProfile')->name('profile.edit');

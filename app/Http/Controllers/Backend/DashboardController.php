@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Models\Auth\Permission;
 use App\Models\Auth\Role;
+use App\Models\Session;
+use App\Models\Cost;
 use Illuminate\Http\Request;
 
 /**
@@ -17,11 +19,12 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        if (! auth()->user()->isAdmin()) {
+        if (!auth()->user()->isAdmin()) {
             return redirect(route('frontend.user.dashboard'))->withFlashDanger('You are not authorized to view admin dashboard.');
         }
-		
-        return view('backend.dashboard');
+        $income = Session::sum('price');
+        $costs = Cost::sum('value');
+        return view('backend.dashboard', ["income" => $income, "costs" => $costs]);
     }
 
     /**
@@ -45,5 +48,14 @@ class DashboardController extends Controller
             exit;
         }
     }
-	
+
+    public function getdataDateRange(Request $req)
+    {
+        $from = $req->from;
+        $to = $req->to;
+
+        $income = Session::whereBetween('created_at', [$from, $to])->sum('price');
+        $costs = Cost::whereBetween('created_at', [$from, $to])->sum('value');
+        return ["income" => $income, "costs" => $costs];
+    }
 }
