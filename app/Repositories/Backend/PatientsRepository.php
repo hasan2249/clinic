@@ -71,7 +71,8 @@ class PatientsRepository extends BaseRepository
                 'address',
                 'created_at',
                 'updated_at',
-            ]);
+            ])
+            ->orderBy('created_at', 'desc');
     }
 
     /**

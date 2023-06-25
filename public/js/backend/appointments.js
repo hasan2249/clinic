@@ -38,23 +38,6 @@
                                 columns: ":visible:not(:last-child)",
                             },
                         },
-                        {
-                            text: "حساب المجموع",
-                            action: function (e, dt, node, config) {
-                                let sum = 0;
-                                console.log(dt.row({ selected: true }).data());
-                                dt.rows({ selected: true })
-                                    .data()
-                                    .map((item) => {
-                                        sum += item.amount;
-                                    });
-                                $("#span-trans-number").text(
-                                    dt.rows({ selected: true }).count()
-                                );
-                                $("#span-trans-amount").text(sum);
-                            },
-                            enabled: true,
-                        },
                         "pageLength",
                         "colvis",
                     ],
@@ -75,7 +58,14 @@
                     ajax: {
                         url: this.selectors.appointments_table.data("ajax_url"),
                         type: "post",
-                        data: { status: 1, trashed: false },
+                        data: {
+                            status: 1,
+                            trashed: false,
+                            patient_id:
+                                this.selectors.appointments_table.data(
+                                    "patient_id"
+                                ),
+                        },
                     },
                     columns: [
                         { data: "date", name: "date" },

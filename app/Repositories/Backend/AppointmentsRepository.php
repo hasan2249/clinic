@@ -59,9 +59,13 @@ class AppointmentsRepository extends BaseRepository
     /**
      * @return mixed
      */
-    public function getForDataTable()
+    public function getForDataTable($patient_id = null)
     {
-        return $this->query()
+        $query = $this->query();
+        if ($patient_id) {
+            $query->where('patient_id', $patient_id);
+        }
+        return $query
             ->join('patients', 'patients.id', '=', 'appointments.patient_id')
             ->select([
                 'appointments.id',

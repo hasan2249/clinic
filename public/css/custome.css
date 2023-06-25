@@ -129,8 +129,8 @@ input[type="date"]::-webkit-datetime-edit-day-field{
 .form-check-label{
 	margin-left:10px;
 }
-.btn{
-	margin-left: 10px;
+.table-btn{
+	margin-left: 10px !important;
 }
 
 button, input, select, textarea {

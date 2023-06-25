@@ -10,6 +10,7 @@ trait PatientAttributes
     public function getActionButtonsAttribute()
     {
         return '<div class="btn-group action-btn">
+                    ' . $this->getAppointments('edit-page', 'admin.appointments.patient.view') . '  
                     ' . $this->getSessions('edit-page', 'admin.sessions.patient.view') . ' 
                     ' . $this->getEditButtonAttribute('edit-page', 'admin.Patients.edit') . '                    
                     ' . $this->getDeleteButtonAttribute('delete-page', 'admin.Patients.destroy') . '

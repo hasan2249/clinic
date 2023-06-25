@@ -16,3 +16,7 @@ Breadcrumbs::for('admin.Patients.edit', function ($trail, $id) {
 Breadcrumbs::for('admin.patient.create.session', function ($trail, $patient_id) {
     $trail->push('انشاء جلسة', route('admin.patient.create.session', $patient_id));
 });
+
+Breadcrumbs::for('admin.patient.create.appointment', function ($trail, $patient_id) {
+    $trail->push('انشاء موعد', route('admin.patient.create.appointment', $patient_id));
+});

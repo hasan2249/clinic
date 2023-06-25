@@ -12,3 +12,7 @@ Breadcrumbs::for('admin.appointments.edit', function ($trail, $id) {
     $trail->parent('admin.appointments.index');
     $trail->push('تعديل الموعد', route('admin.appointments.edit', $id));
 });
+
+Breadcrumbs::for('admin.appointments.patient.view', function ($trail, $patient_id) {
+    $trail->push('الجلسات', route('admin.appointments.patient.view', $patient_id));
+});

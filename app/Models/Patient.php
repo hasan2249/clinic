@@ -32,8 +32,17 @@ class Patient extends BaseModel
     public function getSessions($permission, $route)
     {
         if (access()->allow($permission)) {
-            return '<a href="' . route($route, ["patient_id" => $this->id]) . '" data-toggle="tooltip" data-placement="top" title="الجلسات" class="btn btn-success btn-sm">
+            return '<a href="' . route($route, ["patient_id" => $this->id]) . '" data-toggle="tooltip" data-placement="top" title="الجلسات" class="btn btn-success btn-sm table-btn">
             عرض الجلسات
+                    </a>';
+        }
+    }
+
+    public function getAppointments($permission, $route)
+    {
+        if (access()->allow($permission)) {
+            return '<a href="' . route($route, ["patient_id" => $this->id]) . '" data-toggle="tooltip" data-placement="top" title="المواعيد" class="btn btn-warning btn-sm table-btn">
+            عرض المواعيد
                     </a>';
         }
     }

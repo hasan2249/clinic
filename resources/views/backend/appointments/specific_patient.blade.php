@@ -1,6 +1,6 @@
 @extends('backend.layouts.app')
 
-@section('title', app_name() .' | ' . ' سجل المواعيد')
+@section('title', app_name() . ' | ' .'مواعيد السيد/ة: ' .$name)
 
 @section('breadcrumb-links')
 @include('backend.appointments.includes.breadcrumb-links')
@@ -9,11 +9,11 @@
 @section('content')
 <div class="card">
     <div class="card-body">
-        <div class="row light-red">
+        <div class="row">
             <div class="col-sm-5">
-                <h3 class="card-title m-2">
-                    سجل المواعيد
-                </h3>
+                <h4 class="card-title mb-0">
+                    <small>مواعيد السيد/ة:</small> {{$name}}
+                </h4>
             </div>
             <!--col-->
         </div>
@@ -22,7 +22,7 @@
         <div class="row mt-4">
             <div class="col">
                 <div class="table-responsive">
-                    <table id="appointments-table" class="table" data-ajax_url="{{ route("admin.appointments.get") }}">
+                    <table id="appointments-table" class="table" data-patient_id={{$patient_id}} data-ajax_url="{{ route("admin.appointments.patient.index") }}">
                         <thead>
                             <tr>
                                 <th>تاريخ الموعد</th>

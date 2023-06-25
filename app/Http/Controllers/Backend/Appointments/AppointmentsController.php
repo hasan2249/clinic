@@ -12,7 +12,10 @@ use App\Http\Requests\Backend\Appointments\UpdateAppointmentRequest;
 use App\Http\Responses\Backend\Appointment\EditResponse;
 use App\Http\Responses\RedirectResponse;
 use App\Http\Responses\ViewResponse;
+use App\Exceptions\GeneralException;
+use Yajra\DataTables\Facades\DataTables;
 use App\Models\Appointment;
+use App\Models\Patient;
 use App\Repositories\Backend\AppointmentsRepository;
 use Illuminate\Support\Facades\View;
 
@@ -100,5 +103,33 @@ class AppointmentsController extends Controller
 
         return new RedirectResponse(route('admin.appointments.index'), ['flash_success' => __('alerts.backend.pages.deleted')]);
     }
-}
 
+    public function createPatientAppointmentView(EditAppointmentRequest $request)
+    {
+        $patient = Patient::find($request->patient_id);
+        if (!$patient) {
+            throw new GeneralException("Error: There is no patient with id: " . $request->patient_id);
+        }
+        return new ViewResponse('backend.appointments.createByPatientId', ["patient_id" => $patient->id, "patient_name" => $patient->name]);
+    }
+
+    public function getPatientAppointmentView(EditAppointmentRequest $request)
+    {
+        $patient = Patient::find($request->patient_id);
+        $name = $patient->name;
+        return new ViewResponse('backend.appointments.specific_patient', ["patient_id" => $patient->id, "name" => $name]);
+    }
+
+    public function getPatientAppointmentById(EditAppointmentRequest $request)
+    {
+        return Datatables::of($this->repository->getForDataTable($request->patient_id))
+            ->editColumn('created_at', function ($session) {
+                return $session->created_at->toDateString();
+            })
+            ->addColumn('actions', function ($session) {
+                return $session->action_buttons;
+            })
+            ->escapeColumns(['title'])
+            ->make(true);
+    }
+}

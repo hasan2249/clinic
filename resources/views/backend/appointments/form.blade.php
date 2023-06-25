@@ -14,7 +14,7 @@
         <div class="col">
 
             <div class="form-group row">
-                {{ Form::label("date", "date", ['class' => 'col-md-2 from-control-label required']) }}
+                {{ Form::label("date", "التاريخ", ['class' => 'col-md-2 from-control-label required']) }}
 
                 <div class="col-md-10">
                     <input type="datetime-local" name="date" value="{{isset($appointment)?$appointment->date:''}}" \>
@@ -25,17 +25,17 @@
             <!--form-group-->
 
             <div class="form-group row">
-                {{ Form::label("patient_id", "patient_id", ['class' => 'col-md-2 from-control-label required']) }}
+                {{ Form::label("patient_id", "المريض", ['class' => 'col-md-2 from-control-label hidden required']) }}
 
                 <div class="col-md-10">
-                    {{ Form::text('patient_id', null, ['class' => 'form-control', 'placeholder' => '']) }}
+                    {{ Form::text('patient_id', null, ['class' => 'form-control hidden', 'placeholder' => '']) }}
                 </div>
                 <!--col-->
             </div>
             <!--form-group-->
 
             <div class="form-group row">
-                {{ Form::label("note", "note", ['class' => 'col-md-2 from-control-label required']) }}
+                {{ Form::label("note", "ملاحظة", ['class' => 'col-md-2 from-control-label required']) }}
 
                 <div class="col-md-10">
                     {{ Form::textarea('note', null, ['class' => 'form-control', 'placeholder' => '']) }}
