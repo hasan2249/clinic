@@ -18,8 +18,8 @@ class Mes extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('phone');
-            $table->text('logo');
-            $table->text('address');
+            $table->text('logo')->nullable();
+            $table->text('address')->nullable();
             $table->timestamps();
         });
     }

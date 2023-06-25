@@ -16,10 +16,10 @@ class Patients extends Migration
         //
         Schema::create('Patients', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name');
-            $table->string('phone');
-            $table->integer('birthday');
-            $table->string('address');
+            $table->string('name')->nullable();
+            $table->string('phone')->nullable();
+            $table->integer('birthday')->nullable();
+            $table->string('address')->nullable();
             $table->timestamps();
         });
     }

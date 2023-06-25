@@ -16,9 +16,9 @@
         <div class="col">
 
             <div class="form-group row">
-                {{ Form::label("name", "name", ['class' => 'col-md-2 from-control-label required']) }}
+                {{ Form::label("name", "الاسم", ['class' => 'col-md-2 from-control-label required']) }}
 
-                <div class="col-md-10">
+                <div class="col-md-2">
                     {{ Form::text('name', null, ['class' => 'form-control', 'placeholder' => '']) }}
                 </div>
                 <!--col-->
@@ -26,9 +26,9 @@
             <!--form-group-->
 
             <div class="form-group row">
-                {{ Form::label("phone", "phone", ['class' => 'col-md-2 from-control-label required']) }}
+                {{ Form::label("phone", "الهاتف", ['class' => 'col-md-2 from-control-label required']) }}
 
-                <div class="col-md-10">
+                <div class="col-md-2">
                     {{ Form::text('phone', null, ['class' => 'form-control', 'placeholder' => '']) }}
                 </div>
                 <!--col-->
@@ -36,9 +36,9 @@
             <!--form-group-->
 
             <div class="form-group row">
-                {{ Form::label("birthday", "birthday", ['class' => 'col-md-2 from-control-label required']) }}
+                {{ Form::label("birthday", "مواليد", ['class' => 'col-md-2 from-control-label required']) }}
 
-                <div class="col-md-10">
+                <div class="col-md-2">
                     {{ Form::number('birthday', null, ['class' => 'form-control', 'placeholder' => '']) }}
                 </div>
                 <!--col-->
@@ -46,9 +46,9 @@
             <!--form-group-->
 
             <div class="form-group row">
-                {{ Form::label("address", "address", ['class' => 'col-md-2 from-control-label required']) }}
+                {{ Form::label("address", "العنوان", ['class' => 'col-md-2 from-control-label required']) }}
 
-                <div class="col-md-10">
+                <div class="col-md-6">
                     {{ Form::text('address', null, ['class' => 'form-control', 'placeholder' => '']) }}
                 </div>
                 <!--col-->

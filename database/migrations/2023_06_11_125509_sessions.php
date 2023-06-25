@@ -23,7 +23,7 @@ class Sessions extends Migration
             $table->integer('pluse_width');
             $table->integer('count');
             $table->integer('price');
-            $table->text('note');
+            $table->text('note')->nullable();
             $table->bigInteger('patient_id');
             $table->timestamps();
         });

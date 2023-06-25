@@ -18,7 +18,7 @@ class Costs extends Migration
             $table->bigIncrements('id');
             $table->integer('value');
             $table->string('name');
-            $table->text('note');
+            $table->text('note')->nullable();
             $table->timestamps();
         });
     }

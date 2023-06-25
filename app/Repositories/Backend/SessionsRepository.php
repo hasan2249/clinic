@@ -77,7 +77,6 @@ class SessionsRepository extends BaseRepository
                 'p_sessions.id',
                 'p_sessions.created_at',
                 'p_sessions.updated_at',
-                'p_sessions.date',
                 'p_sessions.treatment_area',
                 'p_sessions.spot_size',
                 'p_sessions.fluence',
@@ -86,7 +85,8 @@ class SessionsRepository extends BaseRepository
                 'p_sessions.price',
                 'p_sessions.note',
                 'patients.name as patient_id'
-            ]);
+            ])
+            ->orderBy('p_sessions.created_at', 'desc');
     }
 
     /**

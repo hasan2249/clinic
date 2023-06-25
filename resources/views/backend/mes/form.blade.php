@@ -13,7 +13,7 @@
         <div class="col">
 
             <div class="form-group row">
-                {{ Form::label("name", "name", ['class' => 'col-md-2 from-control-label required']) }}
+                {{ Form::label("name", "الاسم", ['class' => 'col-md-2 from-control-label required']) }}
 
                 <div class="col-md-10">
                     {{ Form::text('name', null, ['class' => 'form-control', 'placeholder' => '']) }}
@@ -23,7 +23,7 @@
             <!--form-group-->
 
             <div class="form-group row">
-                {{ Form::label("phone", "phone", ['class' => 'col-md-2 from-control-label required']) }}
+                {{ Form::label("phone", "موبايل", ['class' => 'col-md-2 from-control-label required']) }}
 
                 <div class="col-md-10">
                     {{ Form::text('phone', null, ['class' => 'form-control', 'placeholder' => '']) }}
@@ -32,17 +32,18 @@
             </div>
             <!--form-group-->
 
+            <!-- 
             <div class="form-group row">
                 {{ Form::label("logo", "logo", ['class' => 'col-md-2 from-control-label required']) }}
 
                 <div class="col-md-10">
                     {{ Form::textarea('logo', null, ['class' => 'form-control', 'placeholder' => '']) }}
                 </div>
-                <!--col-->
-            </div>
+            </div> -->
+
             <!--form-group-->
             <div class="form-group row">
-                {{ Form::label("address", "address", ['class' => 'col-md-2 from-control-label required']) }}
+                {{ Form::label("address", "العنوان", ['class' => 'col-md-2 from-control-label required']) }}
 
                 <div class="col-md-10">
                     {{ Form::textarea('address', null, ['class' => 'form-control', 'placeholder' => '']) }}

@@ -69,7 +69,6 @@
                     },
                     columns: [
                         { data: "patient_id", name: "patient_id" },
-                        { data: "date", name: "date" },
                         { data: "treatment_area", name: "treatment_area" },
                         { data: "spot_size", name: "spot_size" },
                         { data: "fluence", name: "fluence" },

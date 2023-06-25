@@ -24,7 +24,8 @@ input{
 }
 .color-a{
   color: white;
-  background-color: #e90acf;
+  background-color: #373536;
+  border-radius: 20px;
 }
 .light-yellow{
   color: white;

@@ -22,7 +22,6 @@
                         <thead>
                             <tr>
                                 <th>Patient</th>
-                                <th>Date</th>
                                 <th>Treatment Area</th>
                                 <th>Spot Size</th>
                                 <th>Fluence</th>

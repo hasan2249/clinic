@@ -18,7 +18,7 @@ class Appointments extends Migration
             $table->bigIncrements('id');
             $table->timestamp('date');
             $table->bigInteger('patient_id');
-            $table->text('note');
+            $table->text('note')->nullable();
             $table->timestamps();
         });
     }

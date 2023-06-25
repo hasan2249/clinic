@@ -26,6 +26,7 @@
 					<div>
 						<label class="h1">البيانات ضمن فترة محددة</label>
 					</div>
+					<hr />
 					<div class="form-group row">
 						<div class="col-md-3">
 							من تاريخ:
@@ -47,6 +48,7 @@
 					</div>
 					<!--form-group-->
 					<button calss="btn btn-success btn-sm pull-right" onclick="getMoney()">موافق</button>
+					<hr />
 					<div class="spinner-border text-primary" role="status" id="spinner">
 						<span class="sr-only">Loading...</span>
 					</div>
