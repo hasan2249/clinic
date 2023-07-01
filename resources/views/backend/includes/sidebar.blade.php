@@ -13,6 +13,7 @@
                     @lang('menus.backend.sidebar.dashboard')
                 </a>
             </li>
+            @endif
 
             <li class="nav-item">
                 <a class="nav-link {{
@@ -68,8 +69,6 @@
                     النسخ الاحتياطي
                 </a>
             </li>
-
-            @endif
 
             @if ($logged_in_user->isAdmin())
             <li class="nav-title">

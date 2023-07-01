@@ -75,7 +75,7 @@ class AppointmentsRepository extends BaseRepository
                 'patients.name as patient_id',
                 'appointments.note'
             ])
-            ->orderBy('appointments.created_at', 'desc');
+            ->orderBy('appointments.date', 'desc');
     }
 
     /**

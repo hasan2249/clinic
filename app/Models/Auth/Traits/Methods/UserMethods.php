@@ -17,7 +17,7 @@ trait UserMethods
      */
     public function canChangePassword()
     {
-        return ! app('session')->has(config('access.socialite_session_name'));
+        return !app('session')->has(config('access.socialite_session_name'));
     }
 
     /**
@@ -30,14 +30,14 @@ trait UserMethods
     {
         switch ($this->avatar_type) {
             case 'gravatar':
-                if (! $size) {
+                if (!$size) {
                     $size = config('gravatar.default.size');
                 }
 
                 return gravatar()->get($this->email, ['size' => $size]);
 
             case 'storage':
-                return url('storage/'.$this->avatar_location);
+                return url('storage/' . $this->avatar_location);
         }
 
         $social_avatar = $this->providers()->where('provider', $this->avatar_type)->first();
@@ -73,6 +73,11 @@ trait UserMethods
         return $this->hasRole(config('access.users.admin_role'));
     }
 
+    public function isExecutive()
+    {
+        return $this->hasRole("Executive");
+    }
+
     /**
      * @return bool
      */
@@ -94,6 +99,6 @@ trait UserMethods
      */
     public function isPending()
     {
-        return config('access.users.requires_approval') && ! $this->confirmed;
+        return config('access.users.requires_approval') && !$this->confirmed;
     }
 }

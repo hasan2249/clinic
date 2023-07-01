@@ -8,6 +8,7 @@ use App\Models\Auth\Role;
 use App\Models\Session;
 use App\Models\Cost;
 use Illuminate\Http\Request;
+use App\Models\Auth\User;
 
 /**
  * Class DashboardController.
@@ -19,8 +20,11 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        if (!auth()->user()->isAdmin()) {
-            return redirect(route('frontend.user.dashboard'))->withFlashDanger('You are not authorized to view admin dashboard.');
+        // if (!auth()->user()->can('view-frontend')) {
+        //     return redirect(route('frontend.user.dashboard'))->withFlashDanger('You are not authorized to view admin dashboard.');
+        // }
+        if (!auth()->user()->isAdmin() && auth()->user()->isExecutive()) {
+            return redirect(route('admin.Patients.index'));
         }
         $income = Session::sum('price');
         $costs = Cost::sum('value');
