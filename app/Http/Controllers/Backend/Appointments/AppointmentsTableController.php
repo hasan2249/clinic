@@ -29,7 +29,8 @@ class AppointmentsTableController extends Controller
      */
     public function __invoke(ManageAppointmentRequest $request)
     {
-        return Datatables::of($this->repository->getForDataTable())
+        $date = $request->date;
+        return Datatables::of($this->repository->getForDataTableByDate($date))
             ->editColumn('created_at', function ($appointment) {
                 return $appointment->created_at->toDateString();
             })

@@ -21,6 +21,21 @@
 
         <div class="row mt-4">
             <div class="col">
+                <div class="row">
+                    <div class="col-1">
+                        <input type="radio" id="all" value="0" name="date" checked />
+                        <label for="all">الكل</label>
+                    </div>
+                    <div class="col-1">
+                        <input type="radio" id="today" value="1" name="date" />
+                        <label for="today">اليوم</label>
+                    </div>
+                    <div class="col-1">
+                        <input type="radio" id="tomorrow" value="2" name="date" />
+                        <label for="tomorrow">غدا</label>
+                    </div>
+                </div>
+                <br />
                 <div class="table-responsive">
                     <table id="appointments-table" class="table" data-ajax_url="{{ route("admin.appointments.get") }}">
                         <thead>
@@ -51,6 +66,14 @@
 <script>
     FTX.Utils.documentReady(function() {
         FTX.Appointments.list.init();
+
+        $('input[name="date"]').on('change', function(e) {
+            let com = $('input[name="date"]:checked').val();
+            console.log(com);
+            $("#appointments-table").dataTable().fnDestroy();
+            FTX.Appointments.list.init(com);
+        });
+
     });
 </script>
 @endsection

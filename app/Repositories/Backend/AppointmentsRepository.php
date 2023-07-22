@@ -9,6 +9,7 @@ use App\Exceptions\GeneralException;
 use App\Models\Appointment;
 use App\Repositories\BaseRepository;
 use Illuminate\Support\Str;
+use Carbon\Carbon;
 
 class AppointmentsRepository extends BaseRepository
 {
@@ -64,6 +65,27 @@ class AppointmentsRepository extends BaseRepository
         $query = $this->query();
         if ($patient_id) {
             $query->where('patient_id', $patient_id);
+        }
+        return $query
+            ->join('patients', 'patients.id', '=', 'appointments.patient_id')
+            ->select([
+                'appointments.id',
+                'appointments.created_at',
+                'appointments.updated_at',
+                'appointments.date',
+                'patients.name as patient_id',
+                'appointments.note'
+            ])
+            ->orderBy('appointments.date', 'desc');
+    }
+
+    public function getForDataTableByDate($date = 0)
+    {
+        $query = $this->query();
+        if ($date == 1) {
+            $query->whereDate('appointments.date', Carbon::today());
+        } else if ($date == 2) {
+            $query->whereDate('appointments.date', Carbon::tomorrow());
         }
         return $query
             ->join('patients', 'patients.id', '=', 'appointments.patient_id')

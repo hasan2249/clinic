@@ -5,7 +5,7 @@
                 appointments_table: $("#appointments-table"),
             },
 
-            init: function () {
+            init: function (com) {
                 this.selectors.appointments_table.dataTable({
                     dom: "Bfrtip",
                     buttons: [
@@ -59,6 +59,7 @@
                         url: this.selectors.appointments_table.data("ajax_url"),
                         type: "post",
                         data: {
+                            date: com,
                             status: 1,
                             trashed: false,
                             patient_id:

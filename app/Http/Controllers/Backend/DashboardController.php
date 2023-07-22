@@ -9,6 +9,7 @@ use App\Models\Session;
 use App\Models\Cost;
 use Illuminate\Http\Request;
 use App\Models\Auth\User;
+use Carbon\Carbon;
 
 /**
  * Class DashboardController.
@@ -28,7 +29,11 @@ class DashboardController extends Controller
         }
         $income = Session::sum('price');
         $costs = Cost::sum('value');
-        return view('backend.dashboard', ["income" => $income, "costs" => $costs]);
+
+        $today_income = Session::where('created_at', '>', Carbon::today()->startOfDay())->sum('price');
+        $today_costs = Cost::where('created_at', '>', Carbon::today()->startOfDay())->sum('value');
+
+        return view('backend.dashboard', ["income" => $income, "costs" => $costs, "today_income" => $today_income, "today_costs" => $today_costs]);
     }
 
     /**

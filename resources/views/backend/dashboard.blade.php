@@ -22,6 +22,13 @@
 					<label class="h2">المصاريف الاجمالية: </label> <label class="h2" id="total_cost">{{$costs}} </label>
 				</div>
 				<hr />
+				<div>
+					<label class="h2">ايرادات اليوم</label> <label class="h2" id="total_income">{{$today_income}} </label>
+				</div>
+				<div>
+					<label class="h2">مصاريف اليوم </label> <label class="h2" id="total_cost">{{$today_costs}} </label>
+				</div>
+				<hr />
 				<div class="col-5 color-a">
 					<div>
 						<label class="h1">البيانات ضمن فترة محددة</label>
