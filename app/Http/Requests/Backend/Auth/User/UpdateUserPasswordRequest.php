@@ -29,12 +29,12 @@ class UpdateUserPasswordRequest extends FormRequest
     public function rules()
     {
         return [
-            'password' => array_merge(
-                [
-                    new UnusedPassword((int) $this->segment(4)),
-                ],
-                PasswordRules::changePassword($this->email)
-            ),
+            // 'password' => array_merge(
+            //     [
+            //         new UnusedPassword((int) $this->segment(4)),
+            //     ],
+            //     PasswordRules::changePassword($this->email)
+            // ),
         ];
     }
 }

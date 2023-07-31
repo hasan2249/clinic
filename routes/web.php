@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\LanguageController;
+use App\Http\Controllers\Frontend\Auth\LoginController;
 use Illuminate\Support\Facades\Artisan;
 
 /*
