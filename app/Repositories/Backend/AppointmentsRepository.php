@@ -27,7 +27,8 @@ class AppointmentsRepository extends BaseRepository
         'id',
         'created_at',
         'updated_at',
-        'date',
+        'start_date',
+        'end_date',
         'patient_id',
         'note'
     ];
@@ -57,6 +58,24 @@ class AppointmentsRepository extends BaseRepository
         return $query->paginate($perPage);
     }
 
+    public function getApponinmtmentForCalander(array $options = [])
+    {
+        // $currentTime = Carbon::now();
+        // $after_two_month = $currentTime->addMonths(2);
+        // $after_two_month_str = $after_two_month->format('Y-m-d H:i:s');
+
+        // $currentTime = Carbon::now();
+        // $pastTime = $currentTime->subMonths(2);
+        // $before_two_month_str = $pastTime->format('Y-m-d H:i:s');
+
+        $before_two_month_str = $options['start'];
+        $after_two_month_str = $options['end'];
+        $query = $this->query()
+            ->whereBetween("start_date", [$before_two_month_str, $after_two_month_str])
+            ->get();
+        return $query;
+    }
+
     /**
      * @return mixed
      */
@@ -72,20 +91,21 @@ class AppointmentsRepository extends BaseRepository
                 'appointments.id',
                 'appointments.created_at',
                 'appointments.updated_at',
-                'appointments.date',
+                'appointments.start_date',
+                'appointments.end_date',
                 'patients.name as patient_id',
                 'appointments.note'
             ])
-            ->orderBy('appointments.date', 'desc');
+            ->orderBy('appointments.start_date', 'desc');
     }
 
     public function getForDataTableByDate($date = 0)
     {
         $query = $this->query();
         if ($date == 1) {
-            $query->whereDate('appointments.date', Carbon::today());
+            $query->whereDate('appointments.start_date', Carbon::today());
         } else if ($date == 2) {
-            $query->whereDate('appointments.date', Carbon::tomorrow());
+            $query->whereDate('appointments.start_date', Carbon::tomorrow());
         }
         return $query
             ->join('patients', 'patients.id', '=', 'appointments.patient_id')
@@ -93,11 +113,12 @@ class AppointmentsRepository extends BaseRepository
                 'appointments.id',
                 'appointments.created_at',
                 'appointments.updated_at',
-                'appointments.date',
+                'appointments.start_date',
+                'appointments.end_date',
                 'patients.name as patient_id',
                 'appointments.note'
             ])
-            ->orderBy('appointments.date', 'desc');
+            ->orderBy('appointments.start_date', 'desc');
     }
 
     /**
@@ -109,6 +130,11 @@ class AppointmentsRepository extends BaseRepository
      */
     public function create(array $input)
     {
+        $carbonDate = Carbon::parse($input['start_date']);
+        $formattedDate = $carbonDate->format('Y-m-d H:i:s');
+        $date = Carbon::createFromFormat("Y-m-d H:i:s", $formattedDate);
+        $newDate = $date->addMinutes(15);
+        $input['end_date'] = $newDate->format('Y-m-d H:i:s');
 
         if ($appointment = Appointment::create($input)) {
             event(new AppointmentCreated($appointment));
@@ -127,7 +153,40 @@ class AppointmentsRepository extends BaseRepository
      */
     public function update(Appointment $appointment, array $input)
     {
+        $start_date = carbon::parse($input['start_date']);
+        $end_date = Carbon::createFromFormat("Y-m-d H:i:s", $start_date->format("Y-m-d H:i:s"));
 
+        $end_date->addMinutes(15);
+        $input['end_date'] = $end_date->format('Y-m-d H:i:s');
+
+        if ($appointment->update($input)) {
+            event(new AppointmentUpdated($appointment));
+
+            return $appointment;
+        }
+
+        throw new GeneralException(
+            __('exceptions.backend.pages.update_error')
+        );
+    }
+
+
+    /**
+     * Update Appointment.
+     *
+     * @param \App\Models\Appointment $appointment
+     * @param array $input
+     */
+    public function updateFromCalander(Appointment $appointment, array $input)
+    {
+        $start_date = Carbon::createFromFormat("d/m/Y, H:i:s", $input['start_date']);
+        $end_date = Carbon::createFromFormat("d/m/Y, H:i:s", $input['end_date']);
+
+        // $end_date = $end_date->addMinutes(15);
+        $input['end_date'] = $end_date->format('Y-m-d H:i:s');
+        $input['start_date'] = $start_date->format('Y-m-d H:i:s');
+        // echo 's:' . $input['start_date'] . '   e:' . $input['end_date'];
+        // die;
         if ($appointment->update($input)) {
             event(new AppointmentUpdated($appointment));
 

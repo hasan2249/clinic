@@ -57,6 +57,27 @@ class PatientsRepository extends BaseRepository
         return $query->paginate($perPage);
     }
 
+    public function retrieveListByPatientName($patient)
+    {
+        $search = $patient;
+        $perPage =  20;
+        $orderBy =  'created_at';
+        $order = 'desc';
+
+        $query = $this->query()
+            ->where(function ($qu) use ($search) {
+                $qu->where('name', 'LIKE', '%' . $search . '%')
+                    ->orWhere('phone', 'LIKE', '%' . $search . '%');
+            })
+            ->orderBy($orderBy, $order);
+
+        if ($perPage == -1) {
+            return $query->get();
+        }
+
+        return $query->paginate($perPage);
+    }
+
     /**
      * @return mixed
      */

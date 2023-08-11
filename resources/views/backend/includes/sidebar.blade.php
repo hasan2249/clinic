@@ -42,15 +42,27 @@
                 </a>
             </li>
 
-            <li class="nav-item">
-                <a class="nav-link {{
-                    active_class(Route::is('admin/patient'))
-                }}" href="{{ route('admin.appointments.index') }}">
-                    <i class="nav-icon fas fa-tachometer-alt"></i>
-                    المواعيد
-                </a>
-            </li>
 
+            <li class="nav-item nav-dropdown">
+                <a class="nav-link nav-dropdown-toggle {{
+                    active_class(Route::is('admin/appointment'))
+                }}">
+                    <i class="nav-icon fas fa-list"></i> المواعيد
+                </a>
+
+                <ul class="nav-dropdown-items">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('admin.appointments.index') }}">
+                            جدول المواعيد
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('admin.appointments.calander.view') }}">
+                            روزنامة المواعيد
+                        </a>
+                    </li>
+                </ul>
+            </li>
             <li class="nav-item">
                 <a class="nav-link {{
                     active_class(Route::is('admin/cost'))

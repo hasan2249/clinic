@@ -22,7 +22,7 @@ Route::group(['namespace' => 'Api\V1', 'prefix' => 'v1', 'as' => 'v1.'], functio
         // Route::post('register', 'RegisterController@register');
         Route::post('login', 'AuthController@login');
         // Password Reset
-        // Route::post('password/email', 'ForgotPasswordController@sendResetLinkEmail');
+        // Route::post('password/email', 'ForgotPasswordController@sendResetLinkEmail'); 
     });
 
     Route::group(['middleware' => ['auth:api']], function () {
@@ -31,14 +31,14 @@ Route::group(['namespace' => 'Api\V1', 'prefix' => 'v1', 'as' => 'v1.'], functio
             Route::get('me', 'AuthController@me');
         });
     });
-	// Auto-Generated:  Patients
-    Route::apiResource('Patients', 'PatientsController'); 
-	// Auto-Generated:  Appointments
-    Route::apiResource('appointments', 'AppointmentsController'); 
-	// Auto-Generated:  Sessions
-    Route::apiResource('sessions', 'SessionsController'); 
-	// Auto-Generated:  Mes
-    Route::apiResource('mes', 'MesController'); 
-	// Auto-Generated:  Costs
-    Route::apiResource('costs', 'CostsController'); 
+    // Auto-Generated:  Patients
+    Route::apiResource('Patients', 'PatientsController');
+    // Auto-Generated:  Appointments
+    Route::apiResource('appointments', 'AppointmentsController');
+    // Auto-Generated:  Sessions
+    Route::apiResource('sessions', 'SessionsController');
+    // Auto-Generated:  Mes
+    Route::apiResource('mes', 'MesController');
+    // Auto-Generated:  Costs
+    Route::apiResource('costs', 'CostsController');
 });

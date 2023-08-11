@@ -27,6 +27,8 @@
     <link rel="stylesheet" href="{{asset('datatables.min.css')}}">
     <link rel="stylesheet" href="{{asset('css/custome.css')}}">
 
+    <link rel="stylesheet" href="{{asset('css/toastr.min.css')}}" />
+
     @stack('after-styles')
     <style>
         .hidden {
@@ -108,6 +110,8 @@
     @endif
 
 
+    <script src="{{asset('js/backend/toastr.min.js')}}"></script>
+    <script src="{{asset('/fullcalendar.js')}}"></script>
     <script src="{{ asset('/datatables.min.js')}}"></script>
     <script src="{{ asset('/pdfmake-0.1.36/pdfmake.js')}}"></script>
     <script src="{{ asset('/pdfmake-0.1.36/vfs_fonts.js')}}"></script>

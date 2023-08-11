@@ -101,4 +101,11 @@ class PatientsController extends Controller
 
         return new RedirectResponse(route('admin.Patients.index'), ['flash_success' => __('alerts.backend.pages.deleted')]);
     }
+
+    public function retrieveListByPatientName(ManagePatientRequest $request)
+    {
+        $collection = $this->repository->retrieveListByPatientName($request->patient);
+
+        return $collection;
+    }
 }

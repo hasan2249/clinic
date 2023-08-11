@@ -16,3 +16,7 @@ Breadcrumbs::for('admin.appointments.edit', function ($trail, $id) {
 Breadcrumbs::for('admin.appointments.patient.view', function ($trail, $patient_id) {
     $trail->push('الجلسات', route('admin.appointments.patient.view', $patient_id));
 });
+
+Breadcrumbs::for('admin.appointments.calander.view', function ($trail) {
+    $trail->push('روزنامة المواعيد', route('admin.appointments.calander.view'));
+});

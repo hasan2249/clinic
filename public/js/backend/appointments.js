@@ -69,7 +69,8 @@
                         },
                     },
                     columns: [
-                        { data: "date", name: "date" },
+                        { data: "start_date", name: "start_date" },
+                        { data: "end_date", name: "end_date" },
                         { data: "patient_id", name: "patient_id" },
                         { data: "note", name: "note" },
                         { data: "created_at", name: "created_at" },

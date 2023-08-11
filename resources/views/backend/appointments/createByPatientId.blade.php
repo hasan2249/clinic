@@ -27,10 +27,21 @@
             <div class="col">
 
                 <div class="form-group row">
-                    {{ Form::label("date", "التاريخ", ['class' => 'col-md-2 from-control-label required']) }}
+                    {{ Form::label("start_date", "التاريخ البدء", ['class' => 'col-md-2 from-control-label required']) }}
 
                     <div class="col-md-10">
-                        <input type="datetime-local" name="date" value="{{isset($appointment)?$appointment->date:''}}" \>
+                        <input type="datetime-local" name="start_date" value="{{isset($appointment)?$appointment->start_date:''}}" \>
+
+                    </div>
+                    <!--col-->
+                </div>
+                <!--form-group-->
+
+                <div class="form-group row">
+                    {{ Form::label("end_date", "المدة", ['class' => 'col-md-2 from-control-label required']) }}
+
+                    <div class="col-md-10">
+                        <input type="number" name="end_date" value="{{isset($appointment)?$appointment->end_date:''}}" \>
 
                     </div>
                     <!--col-->

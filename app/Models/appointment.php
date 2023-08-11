@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\Traits\Attributes\AppointmentAttributes;
 use App\Models\Traits\ModelAttributes;
 use App\Models\Traits\Relationships\AppointmentRelationships;
+use App\Models\Patient;
 
 class Appointment extends BaseModel
 {
@@ -23,9 +24,14 @@ class Appointment extends BaseModel
      * @var array
      */
     protected $fillable = [
-        'date',
-		'patient_id',
-		'note'
+        'start_date',
+        'end_date',
+        'patient_id',
+        'note'
     ];
+
+    function patient()
+    {
+        return $this->belongsTo(Patient::class);
+    }
 }
-    

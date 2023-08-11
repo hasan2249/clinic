@@ -18,6 +18,8 @@ use App\Models\Appointment;
 use App\Models\Patient;
 use App\Repositories\Backend\AppointmentsRepository;
 use Illuminate\Support\Facades\View;
+use Carbon\Carbon;
+use App\Http\Resources\AppointmentsResource;
 
 class AppointmentsController extends Controller
 {
@@ -91,6 +93,12 @@ class AppointmentsController extends Controller
         return new RedirectResponse(route('admin.appointments.index'), ['flash_success' => __('alerts.backend.pages.updated')]);
     }
 
+    function updateFromCalander(Appointment $appointment, UpdateAppointmentRequest $request)
+    {
+        $this->repository->updateFromCalander($appointment, $request->except(['_token', '_method']));
+
+        return new RedirectResponse(route('admin.appointments.index'), ['flash_success' => __('alerts.backend.pages.updated')]);
+    }
     /**
      * @param \App\Models\Appointment $appointment
      * @param \App\Http\Requests\Backend\Appointments\DeleteAppointmentRequest $request
@@ -102,6 +110,13 @@ class AppointmentsController extends Controller
         $this->repository->delete($appointment);
 
         return new RedirectResponse(route('admin.appointments.index'), ['flash_success' => __('alerts.backend.pages.deleted')]);
+    }
+
+    public function getApponinmtmentForCalander(ManageAppointmentRequest $request)
+    {
+        $collection = $this->repository->getApponinmtmentForCalander($request->all());
+        $data = AppointmentsResource::collection($collection);
+        return $data;
     }
 
     public function createPatientAppointmentView(EditAppointmentRequest $request)
@@ -124,12 +139,27 @@ class AppointmentsController extends Controller
     {
         return Datatables::of($this->repository->getForDataTable($request->patient_id))
             ->editColumn('created_at', function ($session) {
-                return $session->created_at->toDateString();
+                $date = Carbon::createFromFormat("Y-m-d H:i:s", $session->created_at);
+                return $date->format('Y-m-d h:i A');
+            })
+            ->editColumn('start_date', function ($session) {
+                $start_date = Carbon::createFromFormat("Y-m-d H:i:s", $session->start_date);
+                return $start_date->format('Y-m-d h:i A');
+            })
+            ->editColumn('end_date', function ($session) {
+                $start_date = Carbon::createFromFormat("Y-m-d H:i:s", $session->start_date);
+                $end_date = Carbon::createFromFormat("Y-m-d H:i:s", $session->end_date);
+                return $start_date->diffInMinutes($end_date);
             })
             ->addColumn('actions', function ($session) {
                 return $session->action_buttons;
             })
             ->escapeColumns(['title'])
             ->make(true);
+    }
+
+    function getAppointmentCalanderView(EditAppointmentRequest $request)
+    {
+        return new ViewResponse('backend.appointments.calander');
     }
 }

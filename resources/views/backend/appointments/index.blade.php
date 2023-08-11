@@ -40,7 +40,8 @@
                     <table id="appointments-table" class="table" data-ajax_url="{{ route("admin.appointments.get") }}">
                         <thead>
                             <tr>
-                                <th>تاريخ الموعد</th>
+                                <th>وقت الموعد</th>
+                                <th>المدة (دقيقة)</th>
                                 <th>المريض</th>
                                 <th>ملاحظة</th>
                                 <th>{{ trans('labels.backend.access.pages.table.createdat') }}</th>

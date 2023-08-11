@@ -193,3 +193,15 @@ input.error {
 .sidebar{
   background: #3d1469;
 }
+
+.hand{
+  cursor: grabbing;
+  border: 1px solid;
+  background: #20a8d8;
+}
+.patient_name{
+  cursor: pointer;
+  border: 1px solid;
+  background: #b3bce1;
+  margin-top: 10px;
+}

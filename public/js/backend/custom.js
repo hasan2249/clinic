@@ -279,6 +279,69 @@ async function getData(url = "") {
             });
     });
     //--------------------------------------------------
+    var myInput = document.getElementById("search");
+
+    myInput.addEventListener("keypress", function () {
+        if ($(this).val().length > 1) {
+            $("#loading").removeClass("hidden");
+            $.ajax({
+                url: "/admin/patient/search/" + $(this).val(),
+                type: "GET",
+                headers: {
+                    "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr(
+                        "content"
+                    ),
+                    "Content-Type": "application/json",
+                },
+                success: function (data) {
+                    console.log(data["data"]);
+                    let str = "";
+                    $.each(data["data"], function (index, value) {
+                        str +=
+                            '<div \
+                            class="patient_name"\
+                            name="patient_name"\
+                            data-id="' +
+                            value["id"] +
+                            '"\
+                            data-name="' +
+                            value["name"] +
+                            '"\
+                            id="' +
+                            value["id"] +
+                            '"\
+                            data-event=\'{ "id":"' +
+                            value["id"] +
+                            '", "title": "' +
+                            value["name"] +
+                            '", "duration": "00:15" }\'>' +
+                            value["name"] +
+                            "</div>";
+                    });
+                    $("#patient").html(str);
+
+                    $("[name='patient_name']").on("click", function (e) {
+                        $("#draggable-el").attr(
+                            "data-event",
+                            $(this).attr("data-event")
+                        );
+                        $("#draggable-el").text($(this).attr("data-name"));
+                        $("#draggable-el").attr(
+                            "data-id",
+                            $(this).attr("data-id")
+                        );
+                        $("#draggable-el").attr(
+                            "data-name",
+                            $(this).attr("data-name")
+                        );
+                        console.log($(this).attr("data-name"));
+                    });
+
+                    $("#loading").addClass("hidden");
+                },
+            });
+        }
+    });
 })(jQuery);
 
 $("document").ready(function () {
