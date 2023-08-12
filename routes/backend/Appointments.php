@@ -11,6 +11,7 @@ Route::group(['namespace' => 'Appointments'], function () {
     Route::get('appointments/calander', 'AppointmentsController@getAppointmentCalanderView')->name('appointments.calander.view');
     Route::get('getApponinmtmentForCalander', 'AppointmentsController@getApponinmtmentForCalander');
     Route::patch('appointments/updateAppointmentFromCalander/{appointment}', 'AppointmentsController@updateFromCalander');
+    Route::post('appointments/storeFromCalander', 'AppointmentsController@storeFromCalander');
 
     //For DataTables
     Route::post('appointments/get', 'AppointmentsTableController')->name('appointments.get');

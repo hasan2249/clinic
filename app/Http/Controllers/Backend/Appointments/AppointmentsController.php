@@ -69,6 +69,13 @@ class AppointmentsController extends Controller
         return new RedirectResponse(route('admin.appointments.index'), ['flash_success' => __('alerts.backend.pages.created')]);
     }
 
+    public function storeFromCalander(StoreAppointmentRequest $request)
+    {
+        $appointment = $this->repository->create($request->except(['_token', '_method']));
+
+        return $appointment;
+    }
+
     /**
      * @param \App\Models\Appointment $appointment
      * @param \App\Http\Requests\Backend\Appointments\EditAppointmentRequest $request

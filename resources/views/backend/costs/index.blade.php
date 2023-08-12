@@ -25,10 +25,9 @@
                     <table id="costs-table" class="table" data-ajax_url="{{ route("admin.costs.get") }}">
                         <thead>
                             <tr>
-
-                                <th>value</th>
-                                <th>name</th>
-                                <th>note</th>
+                                <th>القيمة</th>
+                                <th>الوصف</th>
+                                <th>الملاحظات</th>
                                 <th>{{ trans('labels.backend.access.pages.table.createdat') }}</th>
                                 <th>{{ trans('labels.general.actions') }}</th>
                             </tr>

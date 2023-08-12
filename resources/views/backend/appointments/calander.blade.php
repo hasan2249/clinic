@@ -36,7 +36,7 @@
                     positionClass: "toast-top-left"
                 });
                 let patient_id = $("#draggable-el").attr("data-id");
-                var url = SITEURL + '/admin/appointments/';
+                var url = SITEURL + '/admin/appointments/storeFromCalander';
                 console.log(url);
                 $.ajax({
                     method: "POST",
@@ -54,6 +54,9 @@
                             progressBar: true,
                             positionClass: "toast-top-left"
                         });
+                        console.log(event);
+                        var event = calendar.getEventById(patient_id + "_");
+                        event.setProp('id', msg.id);
                     },
                     error: function(msg) {
                         toastr.error('<h3>لم يتم اضافة موعد</h3>', '<h1>حدثت مشكلة</h1>', {
@@ -177,24 +180,20 @@
         });
         calendar.render();
 
-
         var draggableEl = document.getElementById("draggable-el");
         new FullCalendar.Draggable(draggableEl);
     });
 </script>
 
 @section('content')
-<div class="row mb-4">
-    <div class="col-2 mx-auto hand">
-        <div id="draggable-el" data-id="" data-event='{ "id":"o", "title": "my event", "duration": "00:15" }'>
-        </div>
-    </div>
-</div>
-
 <div class="row">
     <div class="col-2">
         <div class="form-group">
-            <input type="text" class="form-control" name="search" id="search" placeholder="ابحث">
+            <div class="col mb-2 mx-auto hand fixedElement">
+                <div id="draggable-el" data-id="" data-event='{ "id":"o", "title": "my event", "duration": "00:15" }'>
+                </div>
+            </div>
+            <input type="text" class="form-control" name="search" id="search" placeholder="الموبايل او الاسم">
             <div id="loading" class="spinner-border hidden" role="status">
                 <span class="sr-only">Loading...</span>
             </div>

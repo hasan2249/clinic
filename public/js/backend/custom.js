@@ -312,7 +312,7 @@ async function getData(url = "") {
                             '"\
                             data-event=\'{ "id":"' +
                             value["id"] +
-                            '", "title": "' +
+                            '_", "title": "' +
                             value["name"] +
                             '", "duration": "00:15" }\'>' +
                             value["name"] +
@@ -355,4 +355,15 @@ $("document").ready(function () {
         $("#span-trans-amount").text("");
     });
     //-----
+
+    $(window).scroll(function (e) {
+        var $el = $(".fixedElement");
+        var isPositionFixed = $el.css("position") == "fixed";
+        if ($(this).scrollTop() > 100 && !isPositionFixed) {
+            $el.css({ position: "fixed", top: "55px", width: "auto" });
+        }
+        if ($(this).scrollTop() < 100 && isPositionFixed) {
+            $el.css({ position: "static", top: "0px" });
+        }
+    });
 });
